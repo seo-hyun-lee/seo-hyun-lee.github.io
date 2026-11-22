@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seohyun Lee</title>
+<meta name="description" content="Seohyun Lee, M.S. student in Statistics at Korea University. Survival analysis, discrete-time competing risks, and causal inference for time-to-event data.">
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --ink: #1f2328;
+    --muted: #5f6670;
+    --line: #e4e1da;
+    --accent: #1d4e6f;
+    --accent-soft: #e8eef3;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Navigation */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(251, 250, 247, 0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 820px; margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .nav-name { font-family: var(--serif); font-size: 19px; color: var(--ink); font-weight: 600; }
+  .nav-links { display: flex; gap: 22px; flex-wrap: wrap; font-size: 14.5px; }
+  .nav-links a { color: var(--muted); }
+  .nav-links a:hover { color: var(--accent); text-decoration: none; }
+
+  main { max-width: 820px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* Hero */
+  .hero {
+    display: grid; grid-template-columns: 180px 1fr; gap: 40px;
+    align-items: start; padding: 56px 0 40px;
+  }
+  .photo, .photo-fallback {
+    width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
+  }
+  .photo-fallback {
+    display: none; align-items: center; justify-content: center;
+    background: var(--accent-soft); color: var(--accent);
+    font-family: var(--serif); font-size: 56px;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 600; font-size: 40px;
+    line-height: 1.15; margin: 0 0 6px;
+  }
+  .role { color: var(--muted); margin: 0 0 18px; font-size: 16.5px; }
+  .contact { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .btn {
+    display: inline-block; font-size: 14px; padding: 7px 15px;
+    border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink);
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.primary:hover { background: #163d58; color: #fff; }
+
+  .bio p { margin: 0 0 14px; }
+
+  .interests { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 0; padding: 0; list-style: none; }
+  .interests li {
+    font-size: 13.5px; background: var(--accent-soft); color: var(--accent);
+    padding: 4px 12px; border-radius: 999px;
+  }
+
+  /* Sections */
+  section { padding: 34px 0 6px; border-top: 1px solid var(--line); }
+  h2 {
+    font-family: var(--serif); font-weight: 600; font-size: 25px;
+    margin: 0 0 20px;
+  }
+  .entry { margin-bottom: 22px; }
+  .entry-head { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+  .entry-title { font-weight: 600; }
+  .entry-date { color: var(--muted); font-size: 14px; white-space: nowrap; }
+  .entry-sub { color: var(--muted); font-size: 15px; }
+  .entry p { margin: 6px 0 0; }
+  .entry ul { margin: 6px 0 0; padding-left: 20px; }
+  .entry li { margin-bottom: 4px; }
+
+  .paper {
+    background: #fff; border: 1px solid var(--line); border-radius: 10px;
+    padding: 20px 22px; margin-bottom: 18px;
+  }
+  .paper-title { font-family: var(--serif); font-size: 18.5px; font-weight: 600; line-height: 1.35; }
+  .authors { color: var(--muted); margin: 6px 0 10px; font-size: 15px; }
+  .authors b { color: var(--ink); font-weight: 600; }
+  .tag {
+    display: inline-block; font-size: 12.5px; padding: 2px 10px; border-radius: 999px;
+    background: #f3efe6; color: #7a5c1e; margin-bottom: 10px;
+  }
+  .paper p { margin: 0; }
+
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card {
+    background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px;
+  }
+  .card h3 { font-size: 15.5px; margin: 0 0 6px; line-height: 1.4; }
+  .card p { margin: 0; font-size: 14.5px; color: #3d434a; }
+  .card .meta { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+  footer {
+    max-width: 820px; margin: 0 auto; padding: 24px; color: var(--muted);
+    font-size: 13.5px; border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 680px) {
+    .hero { grid-template-columns: 1fr; gap: 22px; padding-top: 36px; }
+    .photo, .photo-fallback { width: 128px; height: 128px; font-size: 40px; }
+    h1 { font-size: 32px; }
+    .projects { grid-template-columns: 1fr; }
+    .nav-links { gap: 14px; }
+    .nav-name { display: none; }
+    .entry-head { flex-direction: column; gap: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="#top">Seohyun Lee</a>
+    <div class="nav-links">
+      <a href="#research">Research</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="cv.pdf">CV</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- About -->
+  <div class="hero">
+    <div>
+      <!-- Put a photo named profile.jpg next to this file. Until then, initials are shown. -->
+      <img class="photo" src="profile.jpg" alt="Seohyun Lee"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="photo-fallback">SL</div>
+    </div>
+    <div class="bio">
+      <h1>Seohyun Lee</h1>
+      <p class="role">M.S. Student in Statistics, Korea University</p>
+      <p>I am a master's student in Statistics at Korea University, where I work with Prof. Sangbum Choi on regression methods for discrete-time competing risks data. My current project develops a Poisson-approximation-based partial likelihood for data with grouped event times, a setting that arises frequently in cancer registries such as SEER and in which continuous-time partial likelihood methods no longer apply.</p>
+      <p>My undergraduate training in public health, completed alongside a second major in statistics, continues to shape the questions I pursue. Work as a clinical development intern at Ildong Pharmaceutical, where I drafted statistical analysis plans and sample size calculations for clinical studies, deepened my interest in methods that remain reliable under the realities of real-world health data, and I am currently applying to Ph.D. programs in biostatistics to pursue causal inference and targeted learning for time-to-event outcomes.</p>
+      <ul class="interests">
+        <li>Survival analysis</li>
+        <li>Discrete-time competing risks</li>
+        <li>Causal inference &amp; targeted learning</li>
+        <li>Cancer registry &amp; real-world data</li>
+      </ul>
+      <div class="contact">
+        <a class="btn primary" href="cv.pdf">CV (PDF)</a>
+        <a class="btn" href="mailto:seohyunlee0311@gmail.com">seohyunlee0311@gmail.com</a>
+        <a class="btn" href="https://github.com/seo-hyun-lee">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Research -->
+  <section id="research">
+    <h2>Research</h2>
+    <div class="paper">
+      <span class="tag">Manuscript in preparation · to be submitted to <i>Biometrics</i></span>
+      <div class="paper-title">A Partial-likelihood Approach for the Analysis of Discrete-Time Competing Risks Data</div>
+      <div class="authors"><b>Seohyun Lee</b>, Minjung Lee, and Sangbum Choi</div>
+      <p>Proposes a Poisson-approximation-based partial likelihood for cause-specific regression with grouped event times, together with a Breslow-type baseline hazard estimator and a cluster-robust sandwich variance. A higher-order trend-filtering penalty on the baseline hazards, solved via ADMM, stabilizes estimation, and the method is evaluated through simulation studies and an application to colon cancer data from the SEER registry (N = 9,104).</p>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Graduate Researcher, Department of Statistics, Korea University</span>
+        <span class="entry-date">Jan 2026 – Present</span>
+      </div>
+      <div class="entry-sub">Advisor: Prof. Sangbum Choi</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Clinical Development Team Intern, Ildong Pharmaceutical</span>
+        <span class="entry-date">Jun – Aug 2026</span>
+      </div>
+      <ul>
+        <li>Drafted the statistical analysis plan for a retrospective real-world study of pirfenidone in about 6,000 patients with progressive pulmonary fibrosis</li>
+        <li>Determined sample sizes and wrote the statistical sections for two study protocols, a randomized trial in idiopathic pulmonary fibrosis and an observational study in cardiovascular–kidney–metabolic syndrome</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Public Opinion Research Division Intern, Hankook Research</span>
+        <span class="entry-date">Mar – Jun 2025</span>
+      </div>
+      <ul>
+        <li>Contributed to the 4th wave of the Korean Early Childhood Education and Care Panel Study, a longitudinal survey of 3,295 panels, from questionnaire development to analysis and reporting</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Teaching Assistant, Department of Statistics, Korea University</span>
+        <span class="entry-date">2026</span>
+      </div>
+      <div class="entry-sub"><i>Regression Analysis</i> (Fall 2026) · <i>Data Wrangling and Visualization</i> (Spring 2026)</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Mentor, International Student Mentoring Program, Korea University</span>
+        <span class="entry-date">Spring 2026</span>
+      </div>
+      <div class="entry-sub">Weekly English office hours for Mathematical Statistics, Matrix Algebra, and Introduction to Probability Theory</div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Selected Projects</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>Discrete-Time Survival Prediction with Machine Learning</h3>
+        <p>Tutorial and Weibull simulation study comparing Cox, random survival forest, discrete-time GLM, and neural network models in R.</p>
+        <div class="meta">Nonparametric Statistical Methods</div>
+      </div>
+      <div class="card">
+        <h3>Social Interaction and Late-Life Depression (KLoSA)</h3>
+        <p>Causal effect estimation with propensity score matching and bootstrap resampling, with GAMs and decision trees for nonlinear effects and high-risk subgroups.</p>
+        <div class="meta">Korean Longitudinal Study of Aging</div>
+      </div>
+      <div class="card">
+        <h3>Causal Debiasing for Recommendation Systems</h3>
+        <p>IPS-weighted BPR to reduce popularity bias and Double Machine Learning to test the causal effect of popularity on watch ratio, using the KuaiRec dataset.</p>
+        <div class="meta">KUBIG Machine Learning Contest</div>
+      </div>
+      <div class="card">
+        <h3>Forecasting Waterborne Infectious Disease Outbreaks</h3>
+        <p>Weekly forecasting of enteric infections from climate and flood data with tree-based models, alongside negative binomial regression for interpretability.</p>
+        <div class="meta">KDCA data · KUBIG Conference</div>
+      </div>
+      <div class="card">
+        <h3>Nationwide Influenza-Like Illness Activity Prediction</h3>
+        <p>Time series model of weekly U.S. ILI activity, identifying seasonality and shifts in epidemic patterns during the COVID-19 period.</p>
+        <div class="meta">Time Series Analysis</div>
+      </div>
+      <div class="card">
+        <h3>Clinical QA with Sentence-Level Evidence Grounding</h3>
+        <p>RAG-based system that lets clinicians and patients verify medical answers against source documents, with automated hallucination checks.</p>
+        <div class="meta">NRF President's Award, K-DATA SCIENCE Hackathon</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">M.S. in Statistics, Korea University</span>
+        <span class="entry-date">Expected Aug 2027</span>
+      </div>
+      <div class="entry-sub">Combined Bachelor's–Master's Program</div>
+    </div>
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">B.A. in Public Health and B.Econ. in Statistics, Korea University</span>
+        <span class="entry-date">Feb 2026</span>
+      </div>
+      <div class="entry-sub">Double major in Health Policy and Management and Statistics · High Honors</div>
+    </div>
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Exchange Student, University of North Carolina at Chapel Hill</span>
+        <span class="entry-date">Fall 2024</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">KU-France Global Leadership Program, Université de Lille</span>
+        <span class="entry-date">Jan 2024</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards -->
+  <section id="awards">
+    <h2>Awards</h2>
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">K-DATA SCIENCE Hackathon, NRF President's Award</span>
+        <span class="entry-date">Sep 2026</span>
+      </div>
+      <div class="entry-sub">National Research Foundation of Korea · 2nd place among 26 finalist teams</div>
+    </div>
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Upstage KU–Yonsei Joint AI Hackathon, 3rd Place (Business Track)</span>
+        <span class="entry-date">May 2026</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Semester High Honors, Korea University (6 semesters)</span>
+        <span class="entry-date">2022 – 2025</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Seohyun Lee · <a href="mailto:seohyunlee0311@gmail.com">seohyunlee0311@gmail.com</a> · Last updated November 2026
+</footer>
+
+</body>
+</html>
